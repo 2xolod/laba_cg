@@ -21,6 +21,7 @@ class Renderer:
 
 
 def render(img_mat, z_buffer, scene, width, height, zoom, offset_x, offset_y, light):
+    lx, ly, lz = light[0], light[1], light[2]
     for i in scene.fs:
         v0 = scene.coords[i[0]]
         v1 = scene.coords[i[1]]
@@ -30,8 +31,8 @@ def render(img_mat, z_buffer, scene, width, height, zoom, offset_x, offset_y, li
         x1, y1, z1 = v1[0], v1[1], v1[2]
         x2, y2, z2 = v2[0], v2[1], v2[2]
 
-        normal = get_normal(x0, y0, z0, x1, y1, z1, x2, y2, z2)
-        normal_cross = get_normal_cross(normal, light)
+        nx, ny, nz = get_normal(x0, y0, z0, x1, y1, z1, x2, y2, z2)
+        normal_cross = get_normal_cross(nx, ny, nz, lx, ly, lz)
 
         if normal_cross < 0:
             px0 = x0 * zoom + offset_x
