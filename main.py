@@ -59,6 +59,10 @@ class App:
 
     def render(self):
         # reset_img_mat()
+        global img_mat, z_buffer
+        img_mat.fill(0)
+        z_buffer.fill(np.inf)
+
         self.renderer.render(img_mat, z_buffer, self.scene)
         self.full_image = Image.fromarray(img_mat)
         self._refit()
