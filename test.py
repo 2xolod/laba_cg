@@ -140,7 +140,7 @@ class App:
             return
 
         self.render()
-        # Не обрабатываем дальше – return 'brake'
+        # Не обрабатываем дальше – return 'breake'
         return 'break'
 
     def render(self):
